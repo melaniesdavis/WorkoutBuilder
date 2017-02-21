@@ -15,7 +15,7 @@ namespace WorkoutBuilder.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "What is Workout Builder all about?";
 
             return View();
         }
