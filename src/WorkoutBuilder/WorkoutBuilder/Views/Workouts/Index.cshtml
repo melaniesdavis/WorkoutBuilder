@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WorkoutBuilder.Models.Workout>
+
+@{
+    ViewBag.Title = "Workouts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Workouts</h2>
+
+@if (!Model.Any())
+{
+    <p> We don't have any workouts yet.</p>
+}
+
+
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+
+else
+{
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Workout</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var workout in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => workout.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => workout.Description)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = workout.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = workout.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = workout.Id })
+                    </td>
+                </tr>}
+        </tbody>
+    </table>
+}
