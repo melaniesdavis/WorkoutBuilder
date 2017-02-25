@@ -34,5 +34,19 @@ namespace WorkoutBuilder.Models
                 RepSet = repSet
             });
         }
+
+        /// <summary>
+        /// Adds an artist to the comic book.
+        /// </summary>
+        /// <param name="exercisetId">The artist ID to add.</param>
+        /// <param name="repsetId">The role ID that the artist had on this comic book.</param>
+        public void AddExercise(int exerciseId, int repsetId)
+        {
+            Exercises.Add(new WorkoutExercise()
+            {
+                ExerciseId = exerciseId,
+                RepSetId = repsetId
+            });
+        }
     }
 }

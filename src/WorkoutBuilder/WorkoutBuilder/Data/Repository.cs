@@ -37,6 +37,23 @@ namespace WorkoutBuilder.Data
         }
 
         /// <summary>
+        /// Returns a single workout.
+        /// </summary>
+        /// <param name="workoutId">The workout ID to retrieve.</param>
+        /// <returns>A fully populated Workout entity instance.</returns>
+        public static Workout GetWorkout(int workoutId)
+        {
+            using (Context context = GetContext())
+            {
+                return context.Workouts
+                    .Include(w => w.Exercises.Select(a => a.Exercise))
+                    .Include(w => w.Exercises.Select(a => a.RepSet))
+                    .Where(w => w.Id == workoutId)
+                    .SingleOrDefault();
+            }
+        }
+
+        /// <summary>
         /// Returns a list of exercises ordered by name.
         /// </summary>
         /// <returns>An IList collection of Exercise entity instances.</returns>
