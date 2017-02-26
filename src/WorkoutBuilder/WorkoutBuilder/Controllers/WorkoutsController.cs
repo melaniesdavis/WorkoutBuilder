@@ -18,9 +18,9 @@ namespace WorkoutBuilder.Views.Workouts
             return View(workouts);
         }
 
-        public ActionResult Details(int workoutId)
+        public ActionResult Details(int Id)
         {
-            Workout workout = Repository.GetWorkout(workoutId);
+            Workout workout = Repository.GetWorkout(Id);
 
             return View(workout);
         }
