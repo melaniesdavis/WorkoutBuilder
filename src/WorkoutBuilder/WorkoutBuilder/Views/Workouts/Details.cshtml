@@ -5,10 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+
 
 <div>
-    <h4>@Html.DisplayNameFor(model => model.Name)</h4>
+    <h2>@Html.DisplayFor(model => model.Name)</h2>
+    <h3>Details</h3>
     <hr />
     <table class="table table-bordered table-hover">
         <thead>
@@ -23,9 +24,9 @@
             @foreach (var exercise in Model.Exercises)
                  {
                     <tr>
-                        <td>@exercise.Exercise.Name)</td>
-                        <td>@exercise.RepSet.Reps)</td>
+                        <td>@exercise.Exercise.Name</td>
                         <td>@exercise.RepSet.Sets</td>
+                        <td>@exercise.RepSet.Reps</td>
                         <td>
                             |
                             @Html.ActionLink("Delete", "Delete", new { id = exercise.Id })

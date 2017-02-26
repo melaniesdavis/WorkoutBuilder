@@ -44,7 +44,7 @@ namespace WorkoutBuilder.Data
             var repSet2 = new RepSet()
             {
                 Name = "3 x 15",
-                Sets = 1,
+                Sets = 3,
                 Reps = 15
             };
 
