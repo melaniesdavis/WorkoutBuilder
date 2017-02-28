@@ -36,10 +36,10 @@ namespace WorkoutBuilder.Models
         }
 
         /// <summary>
-        /// Adds an artist to the comic book.
+        /// Adds an exercise to the workout.
         /// </summary>
-        /// <param name="exercisetId">The artist ID to add.</param>
-        /// <param name="repsetId">The role ID that the artist had on this comic book.</param>
+        /// <param name="exercisetId">The exercise ID to add.</param>
+        /// <param name="repsetId">The repset ID that the exercise had on this workout.</param>
         public void AddExercise(int exerciseId, int repsetId)
         {
             Exercises.Add(new WorkoutExercise()

@@ -7,9 +7,9 @@ using WorkoutBuilder.Models;
 
 namespace WorkoutBuilder.ViewModels
 {
-    public class Workout
+    public class WorkoutViewModel
     {
-        public Workout()
+        public WorkoutViewModel()
         {
             Exercises = new List<WorkoutExercise>();
         }

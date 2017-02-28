@@ -33,7 +33,7 @@ namespace WorkoutBuilder.Views.Workouts
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new ViewModels.Workout();
+            var model = new ViewModels.WorkoutViewModel();
             model.ExerciseList = Repository.GetExercises();
             model.RepSetList = Repository.GetRepSet();
             return View(model);
