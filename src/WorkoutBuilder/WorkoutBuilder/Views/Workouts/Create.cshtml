@@ -46,7 +46,9 @@
                             <th>
                             Sets and Reps
                         </th>
-                            <th></th>
+                            <th>
+                                Notes
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,7 +61,9 @@
                             <td>
                             @Html.DropDownListFor(m => m.Id, new SelectList(Model.RepSetList, "Id", "Name"), "", new { @class = "form-control" })
                         </td>
-                            <td></td>
+                            <td>
+                                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                            </td>
                         </tr>
                        
                     </tbody>

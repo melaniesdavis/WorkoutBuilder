@@ -25,5 +25,7 @@ namespace WorkoutBuilder.ViewModels
         public ICollection<Exercise> ExerciseList { get; set; }
 
         public ICollection<RepSet> RepSetList { get; set; }
+
+        public string Notes { get; set; }
     }
 }
