@@ -16,5 +16,7 @@
         public Exercise Exercise { get; set; }
 
         public RepSet RepSet { get; set; }
+
+        public string Notes { get; set; }
     }
 }

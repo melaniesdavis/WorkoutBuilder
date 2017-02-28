@@ -71,7 +71,7 @@ namespace WorkoutBuilder.Data
         /// Returns a list of roles ordered by name.
         /// </summary>
         /// <returns>An IList collection of Role entity instances.</returns>
-        public static IList<RepSet> GetRRepSet()
+        public static IList<RepSet> GetRepSet()
         {
             using (Context context = GetContext())
             {
@@ -93,18 +93,18 @@ namespace WorkoutBuilder.Data
                 context.Workouts.Add(workout);
 
 
-                //foreach (WorkoutExercise exercise in workout.Exercises)
-                //{
-                //    if (exercise.Exercise != null && exercise.Exercise.Id > 0)
-                //    {
-                //        context.Entry(exercise.Exercise).State = EntityState.Unchanged;
-                //    }
+                foreach (WorkoutExercise exercise in workout.Exercises)
+                {
+                    if (exercise.Exercise != null && exercise.Exercise.Id > 0)
+                    {
+                        context.Entry(exercise.Exercise).State = EntityState.Unchanged;
+                    }
 
-                //    if (exercise.RepSet != null && exercise.RepSet.Id > 0)
-                //    {
-                //        context.Entry(exercise.RepSet).State = EntityState.Unchanged;
-                //    }
-                //}
+                    if (exercise.RepSet != null && exercise.RepSet.Id > 0)
+                    {
+                        context.Entry(exercise.RepSet).State = EntityState.Unchanged;
+                    }
+                }
 
                 context.SaveChanges();
             }
