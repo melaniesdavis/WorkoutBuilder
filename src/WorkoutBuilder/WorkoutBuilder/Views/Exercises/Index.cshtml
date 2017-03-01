@@ -5,11 +5,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{
+    var applicationName = "Workout Builder";
+}
+
+@helper GetAddEntryButtonVisibility()
+{
+if ((string)ViewContext.RouteData.Values["controller"] == "Create New" &&
+    (string)ViewContext.RouteData.Values["action"] == "Create")
+{
+        <text>hidden</text>
+}
+else
+{
+        <text>visible</text>
+}
+}
+
 <h2>Exercises</h2>
 
-<p>
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav"></ul>
+    <a href="@Url.Action("Create New", "Create")" style="visibility: @GetAddEntryButtonVisibility()"
+       class="btn btn-primary navbar-btn navbar-right">
+        <span class="glyphicon glyphicon-plus"></span> Add Entry
+    </a>
+</div>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 
 @if (!Model.Any())
 {
@@ -19,15 +43,15 @@
 
 else
     {
-        <table class="table table-bordered table-hover">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
-                    @*<th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Description)
-                    </th>*@
+                    </th>
                     <th></th>
                 </tr>
             </thead>
@@ -38,13 +62,19 @@ else
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>*@
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            <div class="pull-right">
+                                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-warning btn-sm margin-right">
+                                    <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Edit</span>
+                                </a> @*|*@
+                                @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                                <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Delete</span>
+                            </a>
+                            </div>
                         </td>
                     </tr>
 
