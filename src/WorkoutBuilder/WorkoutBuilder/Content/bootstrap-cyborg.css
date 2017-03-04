@@ -4966,7 +4966,7 @@ a.badge:focus {
   color: inherit;
   background-color: #151515;
 }
-.jumbotron h1,
+/*.jumbotron h1,*/
 .jumbotron .h1 {
   color: inherit;
 }
@@ -6913,11 +6913,11 @@ a.list-group-item-danger.active:hover,
 a.list-group-item-danger.active:focus {
   background-color: #b30000;
 }
-.jumbotron h1,
+/*.jumbotron h1,
 .jumbotron h2,
 .jumbotron h3,
 .jumbotron h4,
 .jumbotron h5,
 .jumbotron h6 {
   color: #fff;
-}
+}*/
