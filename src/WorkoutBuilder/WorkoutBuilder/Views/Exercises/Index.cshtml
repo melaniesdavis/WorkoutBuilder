@@ -22,13 +22,20 @@ else
 <h2>Exercises</h2>
 
 
-
-<div class="nav navbar-toggle">
-    <a href="@Url.Action("Create")"
-       class="btn btn-primary btn-sm">
-        <span class="glyphicon glyphicon-plus"></span><span class="hidden-xs"> Add Exercise</span>
-</a>
-</div>
+<table class="table">
+    <tbody>
+        <tr>
+            <td>
+                <div class="pull-right">
+                    <a href="@Url.Action("Create")"
+                       class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-plus"></span><span class="hidden-xs"> Add Exercise</span>
+                    </a>
+                </div>
+            </td>
+        </tr>  
+    </tbody>
+</table>
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
