@@ -200,15 +200,17 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Workouts\Index.cshtml" />
     <Content Include="Views\Workouts\Details.cshtml" />
-    <Content Include="Views\Workouts\Create.cshtml" />
+    <Content Include="Views\Workouts\Add.cshtml" />
     <Content Include="Views\Exercises\Create.cshtml" />
     <Content Include="Views\Exercises\Details.cshtml" />
     <Content Include="Views\Exercises\Edit.cshtml" />
     <Content Include="Views\Exercises\Delete.cshtml" />
     <Content Include="Views\RepSets\Index.cshtml" />
+    <Content Include="Views\Workouts\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

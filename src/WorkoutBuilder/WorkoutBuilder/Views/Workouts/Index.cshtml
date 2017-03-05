@@ -7,17 +7,25 @@
 
 <h2>Workouts</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<table class="table">
+    <tbody>
+        <tr>
+            <td>
+                <div class="pull-right">
+                    <a href="@Url.Action("Create")"
+                       class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-plus"></span><span class="hidden-xs"> Add Workout</span>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 @if (!Model.Any())
 {
     <p> We don't have any workouts yet.</p>
 }
-
-
-
 
 else
 {
@@ -37,9 +45,17 @@ else
                     <td>@Html.DisplayFor(modelItem => workout.Name)</td>
                     <td>@Html.DisplayFor(modelItem => workout.Description)</td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = workout.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = workout.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = workout.Id })
+                        <div class="pull-right">
+                            <a href="@Url.Action("Details", new { id = workout.Id })" class="btn btn-info btn-sm margin-right">
+                                <span class="glyphicon glyphicon-info-sign"></span><span class="hidden-xs"> Details</span>
+                            </a>
+                            <a href="@Url.Action("Edit", new { id = workout.Id })" class="btn btn-warning btn-sm margin-right">
+                                <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Edit</span>
+                            </a>
+                            <a href="@Url.Action("Delete", new { id = workout.Id })" class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Delete</span>
+                            </a>
+                        </div>
                     </td>
                 </tr>}
         </tbody>

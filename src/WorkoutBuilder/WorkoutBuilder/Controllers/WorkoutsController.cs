@@ -29,9 +29,31 @@ namespace WorkoutBuilder.Views.Workouts
             return View(workout);
         }
 
-        // Get: Create Workout
+        // GET: Workout/Create
         [HttpGet]
         public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Workout/Create
+        [HttpPost]
+        public ActionResult Create([Bind(Include = "Name, Description")] Workout workout)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Workouts.Add(workout);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(workout);
+        }
+
+
+        // Get: Add Exercise to Workout
+        [HttpGet]
+        public ActionResult Add()
         {
             var model = new ViewModels.WorkoutViewModel();
             model.ExerciseList = Repository.GetExercises();

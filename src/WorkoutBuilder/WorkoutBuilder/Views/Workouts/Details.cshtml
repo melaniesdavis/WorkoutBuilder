@@ -10,13 +10,30 @@
 <div>
     <h2>@Html.DisplayFor(model => model.Name)</h2>
     <h3>Details</h3>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="pull-right">
+                        <a href="@Url.Action("Add")"
+                           class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-plus"></span><span class="hidden-xs"> Add Exercise</span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
     <hr />
-    <table class="table table-bordered table-hover">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>Exercise</th>
                 <th>Sets</th>
                 <th>Reps</th>
+                <th>Notes</th>
                 <th></th>
             </tr>
         </thead>
@@ -27,9 +44,16 @@
                         <td>@exercise.Exercise.Name</td>
                         <td>@exercise.RepSet.Sets</td>
                         <td>@exercise.RepSet.Reps</td>
+                        <td>@exercise.Notes</td>
                         <td>
-                            |
-                            @Html.ActionLink("Delete", "Delete", new { id = exercise.Id })
+                            <div class="pull-right">
+                                <a href="@Url.Action("Edit", new { id = exercise.Id })" class="btn btn-warning btn-sm margin-right">
+                                    <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Edit</span>
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = exercise.Id })" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Delete</span>
+                                </a>
+                            </div>
                         </td>
                     </tr>
               }
@@ -40,6 +64,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -45,8 +45,6 @@ namespace WorkoutBuilder.Controllers
         }
 
         // POST: Exercises/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public ActionResult Create([Bind(Include = "Name, Description")] Exercise exercise)
         {
@@ -61,6 +59,7 @@ namespace WorkoutBuilder.Controllers
         }
 
         // GET: Exercises/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -75,20 +74,51 @@ namespace WorkoutBuilder.Controllers
             return View(exercise);
         }
 
-        // POST: Exercises/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        public ActionResult Edit([Bind(Include = "Name, Description")] Exercise exercise)
+        // POST: Exercises/Edit
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPost(int? id, Exercise exercise)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(exercise).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(exercise);
+            var exerciseToUpdate = db.Exercises.Find(id);
+            if (TryUpdateModel(exerciseToUpdate, "", new string[] { "Name", "Description"}))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (System.Data.DataException /* dex */)
+                {
+                    ModelState.AddModelError("", "Unable to save changes.  Try again.");
+                }
+            }
+            return View(exerciseToUpdate);
+
         }
+
+        // POST: Exercises/Edit/5
+        //[HttpPost]
+        //public ActionResult Edit([Bind(Include = "Name, Description")] Exercise exercise)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            db.Entry(exercise).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //            return RedirectToAction("Index");
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return View(exercise);
+        //    }
+        //}
 
         // GET: Exercises/Delete/5
         public ActionResult Delete(int? id)
