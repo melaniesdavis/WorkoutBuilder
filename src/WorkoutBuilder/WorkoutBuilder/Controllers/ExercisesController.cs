@@ -7,6 +7,7 @@ using WorkoutBuilder.Data;
 using WorkoutBuilder.Models;
 using System.Data.Entity;
 using System.Net;
+using System.Data;
 
 namespace WorkoutBuilder.Controllers
 {
@@ -48,13 +49,20 @@ namespace WorkoutBuilder.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "Name, Description")] Exercise exercise)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Exercises.Add(exercise);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Exercises.Add(exercise);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            catch (DataException /* dex */)
 
+            {
+                ModelState.AddModelError("", "Unable to save changes.  Try again");
+            }
             return View(exercise);
         }
 
