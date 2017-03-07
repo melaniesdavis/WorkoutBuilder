@@ -26,12 +26,13 @@ namespace WorkoutBuilder.Models
         /// </summary>
         /// <param name="exercise">The exercise to add.</param>
         /// <param name="repset">The set of reps that the exercise had in this workout.</param>
-        public void AddExercise(Exercise exercise, RepSet repSet)
+        public void AddExercise(Exercise exercise, RepSet repSet, string note)
         {
             Exercises.Add(new WorkoutExercise()
             {
                 Exercise = exercise,
-                RepSet = repSet
+                RepSet = repSet, 
+                Notes = note
             });
         }
 

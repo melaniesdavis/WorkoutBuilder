@@ -48,15 +48,17 @@ namespace WorkoutBuilder.Data
                 Reps = 15
             };
 
+            var note1 = "Warm-up";
+
             var workout1 = new Workout()
             {
                 Name = "Very Short Workout",
                 Description = "This is a very short sample workout.",
             };
 
-            workout1.AddExercise(exercisePlank, repSet1);
-            workout1.AddExercise(exerciseDBSquat, repSet2);
-            workout1.AddExercise(exercisePushUp, repSet2);
+            workout1.AddExercise(exercisePlank, repSet1, note1);
+            workout1.AddExercise(exerciseDBSquat, repSet2, null);
+            workout1.AddExercise(exercisePushUp, repSet2, null);
             context.Workouts.Add(workout1);
 
 
