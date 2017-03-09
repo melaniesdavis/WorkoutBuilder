@@ -46,7 +46,7 @@ namespace WorkoutBuilder.Controllers
 
         // POST: RepSets/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "Name, Description")] RepSet repset)
+        public ActionResult Create([Bind(Include = "Name, Sets, Reps")] RepSet repset)
         {
             try
             {

@@ -46,8 +46,8 @@ namespace WorkoutBuilder.Data
             using (Context context = GetContext())
             {
                 return context.Workouts
-                    .Include(w => w.Exercises.Select(a => a.Exercise))
-                    .Include(w => w.Exercises.Select(a => a.RepSet))
+                    .Include(w => w.Workouts.Select(a => a.Exercise))
+                    .Include(w => w.Workouts.Select(a => a.RepSet))
                     .Where(w => w.Id == workoutId)
                     .SingleOrDefault();
             }
@@ -93,7 +93,7 @@ namespace WorkoutBuilder.Data
                 context.Workouts.Add(workout);
 
 
-                foreach (WorkoutExercise exercise in workout.Exercises)
+                foreach (WorkoutExercise exercise in workout.Workouts)
                 {
                     if (exercise.Exercise != null && exercise.Exercise.Id > 0)
                     {

@@ -60,6 +60,42 @@ namespace WorkoutBuilder.Views.Workouts
             model.RepSetList = Repository.GetRepSet();
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult Add([Bind(Include = "WorkoutId, ExerciseId, RepSetId, Exercise, Workout, RepSet, Notes")] Models.WorkoutExercise model)
+        {
+            if (ModelState.IsValid)
+            {
+               
+                //    db.Workouts.Add(workout);
+                //    db.SaveChanges();
+                //    return RedirectToAction("Index");
+                using (var context = new Context())
+                {
+                    var workoutExercise = new WorkoutExercise()
+                    {
+                        ExerciseId = model.ExerciseId,
+                        Notes = model.Notes,
+                        RepSetId = model.RepSetId,
+                        WorkoutId = model.WorkoutId,
+                        Exercise = model.Exercise,
+                        Workout = model.Workout,
+                        RepSet = model.RepSet
+                    };
+                    //workoutExercise.ExerciseId = model.ExerciseId;
+                    //workoutExercise.RepSetId = model.RepSetId;
+                    //workoutExercise.Notes = model.Notes;
+
+                    var workout = context.Workouts.FirstOrDefault(w => w.Id == model.WorkoutId);
+                    workout.Workouts.Add(workoutExercise);
+                    context.SaveChanges();
+                    return RedirectToAction("Details",new { Id = workoutExercise.Id });
+                }
+
+            }
+            throw new NotImplementedException("Something else");
+
+        }
     }
 }
 
