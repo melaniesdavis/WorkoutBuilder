@@ -6,7 +6,7 @@ namespace WorkoutBuilder.Models
     {
         public Workout()
         {
-            Workouts = new List<WorkoutExercise>();
+            Exercises = new List<WorkoutExercise>();
         }
 
         public int Id { get; set; }
@@ -19,7 +19,7 @@ namespace WorkoutBuilder.Models
 
         //public int Reps { get; set; }
 
-        public ICollection<WorkoutExercise> Workouts { get; set; }
+        public ICollection<WorkoutExercise> Exercises { get; set; }
 
         /// <summary>
         /// Adds an exercise to the workout.
@@ -28,7 +28,7 @@ namespace WorkoutBuilder.Models
         /// <param name="repset">The set of reps that the exercise had in this workout.</param>
         public void AddExercise(Exercise exercise, RepSet repSet, string note)
         {
-            Workouts.Add(new WorkoutExercise()
+            Exercises.Add(new WorkoutExercise()
             {
                 Exercise = exercise,
                 RepSet = repSet, 
@@ -43,7 +43,7 @@ namespace WorkoutBuilder.Models
         /// <param name="repsetId">The repset ID that the exercise had on this workout.</param>
         public void AddExercise(int exerciseId, int repSetId, string note)
         {
-            Workouts.Add(new WorkoutExercise()
+            Exercises.Add(new WorkoutExercise()
             {
                 ExerciseId = exerciseId,
                 RepSetId = repSetId,

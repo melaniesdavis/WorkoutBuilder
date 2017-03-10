@@ -83,44 +83,16 @@ namespace WorkoutBuilder.Views.Workouts
                     };
 
                     var workoutToUpdate = context.Workouts.FirstOrDefault(w => w.Id == id);
-                    workoutToUpdate.Workouts.Add(workoutExercise);
+                    workoutToUpdate.AddExercise(exerciseId , repSetId, note);
                     context.SaveChanges();
-                    return RedirectToAction("Details", new { Id = workoutExercise.Id });
+                    return RedirectToAction("Details", new { Id = id });
                 }
 
             }
             throw new NotImplementedException("Something else");
         }
 
-        //[HttpPost]
-        //public ActionResult Add([Bind(Include = "WorkoutId, ExerciseId, RepSetId, Exercise, Workout, RepSet, Notes")] Models.WorkoutExercise model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        using (var context = new Context())
-        //        {
-        //            var workoutExercise = new WorkoutExercise()
-        //            {
-        //                ExerciseId = model.ExerciseId,
-        //                Notes = model.Notes,
-        //                RepSetId = model.RepSetId,
-        //                WorkoutId = model.WorkoutId,
-        //                Exercise = model.Exercise,
-        //                Workout = model.Workout,
-        //                RepSet = model.RepSet
-        //            };
-
-
-        //            var workout = context.Workouts.FirstOrDefault(w => w.Id == model.WorkoutId);
-        //            workout.Workouts.Add(workoutExercise);
-        //            context.SaveChanges();
-        //            return RedirectToAction("Details",new { Id = workoutExercise.Id });
-        //        }
-
-        //    }
-        //    throw new NotImplementedException("Something else");
-
-        //}
+        
     }
 }
 
