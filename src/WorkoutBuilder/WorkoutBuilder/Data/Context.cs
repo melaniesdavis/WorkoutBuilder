@@ -20,6 +20,8 @@ namespace WorkoutBuilder.Data
 
         public DbSet<RepSet> Repsets { get; set; }
 
+        public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
+
         public Context()
         {
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Context>());

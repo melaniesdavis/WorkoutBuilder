@@ -179,5 +179,45 @@ namespace WorkoutBuilder.Data
             }
         }
 
+
+        public static Exercise GetExerciseById(int exerciseId)
+        {
+            using (Context context = GetContext())
+            {
+                return context.Exercises
+                    .Where(e => e.Id == exerciseId)
+                    .SingleOrDefault();
+            }
+        }
+
+        public static Workout GetWorkoutById(int workoutId)
+        {
+            using (Context context = GetContext())
+            {
+                return context.Workouts
+                   .Where(w => w.Id == workoutId)
+                    .SingleOrDefault();
+            }
+        }
+
+        public static RepSet GetRepSetById(int repSetId)
+        {
+            using (Context context = GetContext())
+            {
+                return context.Repsets
+                    .Where(r => r.Id == repSetId)
+                    .SingleOrDefault();
+            }
+        }
+
+        public static int GetWorkoutExerciseCount()
+        {
+            using (Context context = GetContext())
+            {
+                return context.WorkoutExercises.Count();
+                    
+            }
+        }
+
     }
 }

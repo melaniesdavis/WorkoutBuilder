@@ -53,49 +53,74 @@ namespace WorkoutBuilder.Views.Workouts
 
         // Get: Add Exercise to Workout
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Add(int id)
         {
-            var model = new ViewModels.WorkoutViewModel();
-            model.ExerciseList = Repository.GetExercises();
-            model.RepSetList = Repository.GetRepSet();
-            return View(model);
+            
+            var workoutExercise = new ViewModels.WorkoutViewModel();
+            workoutExercise.ExerciseList = Repository.GetExercises();
+            workoutExercise.RepSetList = Repository.GetRepSet();
+            return View(workoutExercise);
         }
 
         [HttpPost]
-        public ActionResult Add([Bind(Include = "WorkoutId, ExerciseId, RepSetId, Exercise, Workout, RepSet, Notes")] Models.WorkoutExercise model)
+        public ActionResult Add(int id, int exerciseId, int repSetId, string note, Exercise exercise, RepSet repSet, Workout workout, Models.WorkoutExercise model)
         {
             if (ModelState.IsValid)
             {
-               
-                //    db.Workouts.Add(workout);
-                //    db.SaveChanges();
-                //    return RedirectToAction("Index");
                 using (var context = new Context())
                 {
+
                     var workoutExercise = new WorkoutExercise()
                     {
-                        ExerciseId = model.ExerciseId,
-                        Notes = model.Notes,
-                        RepSetId = model.RepSetId,
-                        WorkoutId = model.WorkoutId,
-                        Exercise = model.Exercise,
-                        Workout = model.Workout,
-                        RepSet = model.RepSet
+                        Id = Repository.GetWorkoutExerciseCount() +1,
+                        ExerciseId = exerciseId,
+                        Notes = note,
+                        RepSetId = repSetId,
+                        WorkoutId = id,
+                        Exercise = Repository.GetExerciseById(exerciseId),
+                        RepSet = Repository.GetRepSetById(repSetId),
+                        Workout = Repository.GetWorkoutById(id)
                     };
-                    //workoutExercise.ExerciseId = model.ExerciseId;
-                    //workoutExercise.RepSetId = model.RepSetId;
-                    //workoutExercise.Notes = model.Notes;
 
-                    var workout = context.Workouts.FirstOrDefault(w => w.Id == model.WorkoutId);
-                    workout.Workouts.Add(workoutExercise);
+                    var workoutToUpdate = context.Workouts.FirstOrDefault(w => w.Id == id);
+                    workoutToUpdate.Workouts.Add(workoutExercise);
                     context.SaveChanges();
-                    return RedirectToAction("Details",new { Id = workoutExercise.Id });
+                    return RedirectToAction("Details", new { Id = workoutExercise.Id });
                 }
 
             }
             throw new NotImplementedException("Something else");
-
         }
+
+        //[HttpPost]
+        //public ActionResult Add([Bind(Include = "WorkoutId, ExerciseId, RepSetId, Exercise, Workout, RepSet, Notes")] Models.WorkoutExercise model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        using (var context = new Context())
+        //        {
+        //            var workoutExercise = new WorkoutExercise()
+        //            {
+        //                ExerciseId = model.ExerciseId,
+        //                Notes = model.Notes,
+        //                RepSetId = model.RepSetId,
+        //                WorkoutId = model.WorkoutId,
+        //                Exercise = model.Exercise,
+        //                Workout = model.Workout,
+        //                RepSet = model.RepSet
+        //            };
+
+
+        //            var workout = context.Workouts.FirstOrDefault(w => w.Id == model.WorkoutId);
+        //            workout.Workouts.Add(workoutExercise);
+        //            context.SaveChanges();
+        //            return RedirectToAction("Details",new { Id = workoutExercise.Id });
+        //        }
+
+        //    }
+        //    throw new NotImplementedException("Something else");
+
+        //}
     }
 }
 
