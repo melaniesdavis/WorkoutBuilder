@@ -25,11 +25,55 @@
             </div>
         </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ExerciseId, "ExerciseId", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="form-group">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                Exercise
+                            </th>
+                            <th>
+                                Sets and Reps
+                            </th>
+                            <th>
+                                Notes
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DropDownListFor(m => m.ExerciseId, new SelectList(Model.ExerciseList, "Id", "Name"), "", new { @class = "form-control" })
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.RepSetId, new SelectList(Model.RepSetList, "Id", "Name"), "", new { @class = "form-control" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Edit workout" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+        
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ExerciseId, "Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.DropDownList("ExerciseId", null, htmlAttributes: new { @class = "form-control" })*@
-                @Html.DropDownListFor(m => m.ExerciseId, new SelectList(Model.ExerciseList, "Id", "Name"), "", new { @class = "form-control" })
+                @*
+                @Html.DropDownList("ExerciseId", null, htmlAttributes: new { @class = "form-control" })*@
+                @*@Html.DropDownListFor(m => m.ExerciseId, new SelectList(Model.ExerciseList, "Id", "Name"), "", new { @class = "form-control" })
                     
                     @Html.ValidationMessageFor(model => model.ExerciseId, "", new { @class = "text-danger" })
 </div>
@@ -56,7 +100,7 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-    </div>
+    </div>*@
 }
 
 <div>

@@ -35,7 +35,8 @@
                         <tr>
                             <td>
                                 @Html.DropDownListFor(m => m.ExerciseId, new SelectList(Model.ExerciseList, "Id", "Name"), "", new {@class = "form-control"})
-                            </td>
+                                @Html.ValidationMessageFor(m => m.ExerciseId) 
+                            </td> 
                             <td>
                                 @Html.DropDownListFor(m => m.RepSetId, new SelectList(Model.RepSetList, "Id", "Name"), "", new { @class = "form-control" })
                             </td>

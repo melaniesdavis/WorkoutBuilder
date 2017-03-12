@@ -177,6 +177,9 @@ namespace WorkoutBuilder.Views.Workouts
             {
                 return HttpNotFound();
             }
+
+            workoutExercise.ExerciseList = Repository.GetExercises();
+            workoutExercise.RepSetList = Repository.GetRepSet();
             return View(workoutExercise);
         }
     }
