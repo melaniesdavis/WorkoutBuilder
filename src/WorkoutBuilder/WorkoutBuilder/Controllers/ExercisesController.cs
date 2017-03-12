@@ -109,7 +109,7 @@ namespace WorkoutBuilder.Controllers
 
         }
 
-
+        [HttpGet]
         public ActionResult Delete(int? id)
         {
             if (id == null)

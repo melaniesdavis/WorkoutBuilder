@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
+using System.Net;
 
 namespace WorkoutBuilder.Data
 {
@@ -104,6 +106,10 @@ namespace WorkoutBuilder.Data
                     {
                         context.Entry(exercise.RepSet).State = EntityState.Unchanged;
                     }
+                    if (exercise.Notes != null )
+                    {
+                        context.Entry(exercise.Notes).State = EntityState.Unchanged;
+                    }
                 }
 
                 context.SaveChanges();
@@ -142,11 +148,14 @@ namespace WorkoutBuilder.Data
             }
         }
 
+
+
+
         /// <summary>
         /// Updates a workout.
         /// </summary>
         /// <param name="workout">The Workout entity instance to update.</param>
-        public static void UpdateWorkout(Workout workout)
+        public static void EditWorkout(Workout workout)
         {
             using (Context context = GetContext())
             {
@@ -218,6 +227,12 @@ namespace WorkoutBuilder.Data
                     
             }
         }
+
+
+        //public static string GetNote()
+        //{
+
+        //}
 
     }
 }

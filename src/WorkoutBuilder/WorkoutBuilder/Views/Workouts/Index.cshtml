@@ -49,10 +49,10 @@ else
                             <a href="@Url.Action("Details", new { id = workout.Id })" class="btn btn-info btn-sm margin-right">
                                 <span class="glyphicon glyphicon-info-sign"></span><span class="hidden-xs"> Details</span>
                             </a>
-                            <a href="@Url.Action("Edit", new { id = workout.Id })" class="btn btn-warning btn-sm margin-right">
+                            <a href="@Url.Action("EditWorkout", new { id = workout.Id })" class="btn btn-warning btn-sm margin-right">
                                 <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Edit</span>
                             </a>
-                            <a href="@Url.Action("Delete", new { id = workout.Id })" class="btn btn-danger btn-sm">
+                            <a href="@Url.Action("DeleteWorkout", new { id = workout.Id })" class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Delete</span>
                             </a>
                         </div>

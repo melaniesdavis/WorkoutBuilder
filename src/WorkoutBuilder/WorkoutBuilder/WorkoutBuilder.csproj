@@ -210,7 +210,9 @@
     <Content Include="Views\RepSets\Create.cshtml" />
     <Content Include="Views\RepSets\Edit.cshtml" />
     <Content Include="Views\RepSets\Delete.cshtml" />
-    <Content Include="Views\Workouts\Edit.cshtml" />
+    <Content Include="Views\Workouts\EditWorkout.cshtml" />
+    <Content Include="Views\Workouts\DeleteWorkout.cshtml" />
+    <Content Include="Views\Workouts\EditWorkoutExercise.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
