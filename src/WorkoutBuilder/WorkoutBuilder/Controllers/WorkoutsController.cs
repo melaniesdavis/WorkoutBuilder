@@ -173,6 +173,30 @@ namespace WorkoutBuilder.Views.Workouts
             return View(workoutExercise);
         }
 
+        // POST: WorkoutExercise/Edit/
+        [HttpPost]
+        public ActionResult EditWorkoutExercise(int id, int workoutId, int exerciseId, int repSetId, string notes, WorkoutExercise workoutexercise)
+        {
+            var wEToUpdate = db.WorkoutExercises.Find(id);
+            if (TryUpdateModel(wEToUpdate, "", new string[] { "Id", "ExerciseId", "RepSetId", "Notes" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Details", new { id = workoutId });
+                }
+                catch (System.Data.DataException /* dex */)
+                {
+                    ModelState.AddModelError("", "Unable to save changes.  Try again.");
+                }
+            }
+            return View(wEToUpdate.Id);
+
+        }
+
+
+
         // GET: WorkoutExercise/Delete/
         [HttpGet]
         public ActionResult DeleteWorkoutExercise(int id, int workoutId, int exerciseId, int repSetId, string notes, Exercise exercise,RepSet repSet, Workout workout, WorkoutExercise model)
