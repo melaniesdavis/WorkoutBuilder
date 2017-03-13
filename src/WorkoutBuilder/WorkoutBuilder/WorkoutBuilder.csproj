@@ -213,6 +213,7 @@
     <Content Include="Views\Workouts\EditWorkout.cshtml" />
     <Content Include="Views\Workouts\DeleteWorkout.cshtml" />
     <Content Include="Views\Workouts\EditWorkoutExercise.cshtml" />
+    <Content Include="Views\Workouts\DeleteWorkoutExercise.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

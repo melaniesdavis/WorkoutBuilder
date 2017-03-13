@@ -18,7 +18,7 @@ namespace WorkoutBuilder.Data
 
         public DbSet<Exercise> Exercises { get; set; }
 
-        public DbSet<RepSet> Repsets { get; set; }
+        public DbSet<RepSet> RepSets { get; set; }
 
         public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
 

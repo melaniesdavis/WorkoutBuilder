@@ -77,7 +77,7 @@ namespace WorkoutBuilder.Data
         {
             using (Context context = GetContext())
             {
-                return context.Repsets
+                return context.RepSets
                     .OrderBy(r => r.Name)
                     .ToList();
             }
@@ -106,7 +106,7 @@ namespace WorkoutBuilder.Data
                     {
                         context.Entry(exercise.RepSet).State = EntityState.Unchanged;
                     }
-                    if (exercise.Notes != null )
+                    if (exercise.Notes != null)
                     {
                         context.Entry(exercise.Notes).State = EntityState.Unchanged;
                     }
@@ -141,7 +141,7 @@ namespace WorkoutBuilder.Data
             using (Context context = GetContext())
             {
 
-                context.Repsets.Add(repSet);
+                context.RepSets.Add(repSet);
 
 
                 context.SaveChanges();
@@ -164,13 +164,14 @@ namespace WorkoutBuilder.Data
                     context.Workouts.Attach(workout);
                     var workoutEntry = context.Entry(workout);
                     workoutEntry.State = EntityState.Modified;
-                    
+
 
                     context.SaveChanges();
 
                 }
             }
         }
+
 
         /// <summary>
         /// Deletes a workout.
@@ -213,7 +214,7 @@ namespace WorkoutBuilder.Data
         {
             using (Context context = GetContext())
             {
-                return context.Repsets
+                return context.RepSets
                     .Where(r => r.Id == repSetId)
                     .SingleOrDefault();
             }
@@ -224,15 +225,21 @@ namespace WorkoutBuilder.Data
             using (Context context = GetContext())
             {
                 return context.WorkoutExercises.Count();
-                    
+
             }
         }
 
 
-        //public static string GetNote()
-        //{
+        public static void DeleteWorkoutExercise(int id)
+        {
+            using (Context context = GetContext())
+            {
 
-        //}
+                var workoutExercise = new Workout() { Id = id };
+                context.Entry(workoutExercise).State = EntityState.Deleted;
 
+                context.SaveChanges();
+            }
+        }
     }
 }

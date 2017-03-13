@@ -7,13 +7,10 @@ namespace WorkoutBuilder.Models
     {
 
         public int Id { get; set; }
-
-       
+        
         public int WorkoutId { get; set; }
-
         
         public int ExerciseId { get; set; }
-
         
         public int RepSetId { get; set; }
 
@@ -23,9 +20,9 @@ namespace WorkoutBuilder.Models
 
         public RepSet RepSet { get; set; }
 
-        public ICollection<Exercise> ExerciseList { get; set; }
+        //public ICollection<Exercise> ExerciseList { get; set; }
 
-        public ICollection<RepSet> RepSetList { get; set; }
+        //public ICollection<RepSet> RepSetList { get; set; }
 
 
         public string Notes { get; set; }

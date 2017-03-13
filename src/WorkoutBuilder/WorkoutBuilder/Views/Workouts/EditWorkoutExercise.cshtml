@@ -1,4 +1,4 @@
-﻿@model WorkoutBuilder.Models.WorkoutExercise
+﻿@model WorkoutBuilder.ViewModels.WorkoutViewModel
 
 @{
     ViewBag.Title = "EditWorkoutExercise";
@@ -76,7 +76,7 @@
                 @*@Html.DropDownListFor(m => m.ExerciseId, new SelectList(Model.ExerciseList, "Id", "Name"), "", new { @class = "form-control" })
                     
                     @Html.ValidationMessageFor(model => model.ExerciseId, "", new { @class = "text-danger" })
-</div>
+            </div>
         </div>
 
         <div class="form-group">

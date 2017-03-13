@@ -9,10 +9,10 @@ namespace WorkoutBuilder.ViewModels
 {
     public class WorkoutViewModel
     {
-        public WorkoutViewModel()
-        {
-            Exercise = new List<WorkoutExercise>();
-        }
+        //public WorkoutViewModel()
+        //{
+        //    Exercise = new List<WorkoutExercise>();
+        //}
 
         public int Id { get; set; }
 
@@ -26,7 +26,7 @@ namespace WorkoutBuilder.ViewModels
 
         public int RepSetId { get; set; }
 
-        public ICollection<WorkoutExercise> Exercise { get; set; }
+        //public ICollection<WorkoutExercise> Exercise { get; set; }
 
         public ICollection<Exercise> ExerciseList { get; set; }
 

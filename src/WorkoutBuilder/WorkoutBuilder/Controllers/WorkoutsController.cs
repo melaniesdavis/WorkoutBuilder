@@ -63,20 +63,19 @@ namespace WorkoutBuilder.Views.Workouts
             return View(workoutExercise);
         }
 
+
+        // POST: Add exercise to workout
         [HttpPost]
-        public ActionResult Add(int id, int exerciseId, int repSetId, string note, Exercise exercise, RepSet repSet, Workout workout, WorkoutExercise model)
+        public ActionResult Add(int id, int exerciseId, int repSetId, string note, Workout workout, WorkoutExercise model)
         {
             var workoutExercise = new WorkoutExercise()
-                {
-                    Id = Repository.GetWorkoutExerciseCount() + 1,
-                    ExerciseId = exerciseId,
-                    Notes = note,
-                    RepSetId = repSetId,
-                    WorkoutId = id,
-                    Exercise = Repository.GetExerciseById(exerciseId),
-                    RepSet = Repository.GetRepSetById(repSetId),
-                    Workout = Repository.GetWorkoutById(id)
-                };
+            {
+                //Id = Repository.GetWorkoutExerciseCount() + 1,
+                ExerciseId = exerciseId,
+                Notes = note,
+                RepSetId = repSetId,
+                WorkoutId = id
+            };
 
             var workoutToUpdate = db.Workouts.FirstOrDefault(w => w.Id == id);
             workoutToUpdate.AddExercise(exerciseId, repSetId, note);
@@ -88,12 +87,8 @@ namespace WorkoutBuilder.Views.Workouts
 
         // GET: Workouts/Edit/
         [HttpGet]
-        public ActionResult EditWorkout(int? id)
+        public ActionResult EditWorkout(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Workout workout = db.Workouts.Find(id);
             if (workout == null)
             {
@@ -105,12 +100,8 @@ namespace WorkoutBuilder.Views.Workouts
         // POST: Workouts/Edit
         [HttpPost, ActionName("EditWorkout")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(int? id, Workout workout)
+        public ActionResult EditPost(int id, Workout workout)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             var workoutToUpdate = db.Workouts.Find(id);
             if (TryUpdateModel(workoutToUpdate, "", new string[] { "Name", "Description" }))
             {
@@ -131,12 +122,8 @@ namespace WorkoutBuilder.Views.Workouts
 
         // GET: Workout/Delete/
         [HttpGet]
-        public ActionResult DeleteWorkout(int? id)
+        public ActionResult DeleteWorkout(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Workout workout = db.Workouts.Find(id);
             if (workout == null)
             {
@@ -166,20 +153,30 @@ namespace WorkoutBuilder.Views.Workouts
 
         // GET: WorkoutExercise/Edit/
         [HttpGet]
-        public ActionResult EditWorkoutExercise(int? id)
+        public ActionResult EditWorkoutExercise(int id)
         {
-            if (id == null)
+            WorkoutExercise wExercise = db.WorkoutExercises.Find(id);
+            if (wExercise == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             }
+
+            var workoutExercise = new ViewModels.WorkoutViewModel();
+            workoutExercise.ExerciseList = Repository.GetExercises();
+            workoutExercise.RepSetList = Repository.GetRepSet();
+            return View(workoutExercise);
+        }
+
+        // GET: WorkoutExercise/Delete/
+        [HttpGet]
+        public ActionResult DeleteWorkoutExercise(int id, int exerciseId, int repSetId, string note, Workout workout, WorkoutExercise model)
+        {
             WorkoutExercise workoutExercise = db.WorkoutExercises.Find(id);
             if (workoutExercise == null)
             {
                 return HttpNotFound();
             }
 
-            workoutExercise.ExerciseList = Repository.GetExercises();
-            workoutExercise.RepSetList = Repository.GetRepSet();
             return View(workoutExercise);
         }
     }

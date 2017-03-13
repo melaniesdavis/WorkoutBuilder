@@ -29,7 +29,7 @@ namespace WorkoutBuilder.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RepSet repset = db.Repsets.Find(id);
+            RepSet repset = db.RepSets.Find(id);
             if (repset == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace WorkoutBuilder.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.Repsets.Add(repset);
+                    db.RepSets.Add(repset);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -73,7 +73,7 @@ namespace WorkoutBuilder.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RepSet repset = db.Repsets.Find(id);
+            RepSet repset = db.RepSets.Find(id);
             if (repset == null)
             {
                 return HttpNotFound();
@@ -90,7 +90,7 @@ namespace WorkoutBuilder.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var repSetToUpdate = db.Repsets.Find(id);
+            var repSetToUpdate = db.RepSets.Find(id);
             if (TryUpdateModel(repSetToUpdate, "", new string[] { "Name", "Sets", "Reps" }))
             {
                 try
@@ -134,7 +134,7 @@ namespace WorkoutBuilder.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RepSet repset = db.Repsets.Find(id);
+            RepSet repset = db.RepSets.Find(id);
             if (repset == null)
             {
                 return HttpNotFound();
@@ -146,8 +146,8 @@ namespace WorkoutBuilder.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            RepSet repset = db.Repsets.Find(id);
-            db.Repsets.Remove(repset);
+            RepSet repset = db.RepSets.Find(id);
+            db.RepSets.Remove(repset);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
