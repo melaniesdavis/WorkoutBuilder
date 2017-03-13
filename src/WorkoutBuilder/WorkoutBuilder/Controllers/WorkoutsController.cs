@@ -66,20 +66,20 @@ namespace WorkoutBuilder.Views.Workouts
 
         // POST: Add exercise to workout
         [HttpPost]
-        public ActionResult Add(int id, int exerciseId, int repSetId, string note, Workout workout, WorkoutExercise model)
+        public ActionResult Add(int id, int exerciseId, int repSetId, string notes, Workout workout, WorkoutExercise model)
         {
             var workoutExercise = new WorkoutExercise()
             {
                 //Id = Repository.GetWorkoutExerciseCount() + 1,
                 ExerciseId = exerciseId,
                 RepSetId = repSetId,
-                Notes = note
+                Notes = notes
                 //,
                 //WorkoutId = id
             };
 
             var workoutToUpdate = db.Workouts.FirstOrDefault(w => w.Id == id);
-            workoutToUpdate.AddExercise(exerciseId, repSetId, note);
+            workoutToUpdate.AddExercise(exerciseId, repSetId, notes);
             db.SaveChanges();
             return RedirectToAction("Details", new { Id = id });
         }
@@ -165,12 +165,17 @@ namespace WorkoutBuilder.Views.Workouts
             var workoutExercise = new ViewModels.WorkoutViewModel();
             workoutExercise.ExerciseList = Repository.GetExercises();
             workoutExercise.RepSetList = Repository.GetRepSet();
+            workoutExercise.Id = wExercise.Id;
+            workoutExercise.ExerciseId = wExercise.ExerciseId;
+            workoutExercise.RepSetId = wExercise.RepSetId;
+            workoutExercise.WorkoutId = wExercise.WorkoutId;
+            workoutExercise.Notes = wExercise.Notes;
             return View(workoutExercise);
         }
 
         // GET: WorkoutExercise/Delete/
         [HttpGet]
-        public ActionResult DeleteWorkoutExercise(int id, int workoutId, int exerciseId, int repSetId, string note, Exercise exercise,RepSet repSet, Workout workout, WorkoutExercise model)
+        public ActionResult DeleteWorkoutExercise(int id, int workoutId, int exerciseId, int repSetId, string notes, Exercise exercise,RepSet repSet, Workout workout, WorkoutExercise model)
         {
             WorkoutExercise workoutExercise = db.WorkoutExercises.Find(id);
             if (workoutExercise == null)
@@ -181,6 +186,7 @@ namespace WorkoutBuilder.Views.Workouts
             workoutExercise.Exercise = Repository.GetExerciseById(exerciseId);
             workoutExercise.RepSet = Repository.GetRepSetById(repSetId);
             workoutExercise.Workout = Repository.GetWorkoutById(workoutId);
+            workoutExercise.Notes = notes;
 
             return View(workoutExercise);
         }
