@@ -72,9 +72,10 @@ namespace WorkoutBuilder.Views.Workouts
             {
                 //Id = Repository.GetWorkoutExerciseCount() + 1,
                 ExerciseId = exerciseId,
-                Notes = note,
                 RepSetId = repSetId,
-                WorkoutId = id
+                Notes = note
+                //,
+                //WorkoutId = id
             };
 
             var workoutToUpdate = db.Workouts.FirstOrDefault(w => w.Id == id);
@@ -169,13 +170,17 @@ namespace WorkoutBuilder.Views.Workouts
 
         // GET: WorkoutExercise/Delete/
         [HttpGet]
-        public ActionResult DeleteWorkoutExercise(int id, int exerciseId, int repSetId, string note, Workout workout, WorkoutExercise model)
+        public ActionResult DeleteWorkoutExercise(int id, int workoutId, int exerciseId, int repSetId, string note, Exercise exercise,RepSet repSet, Workout workout, WorkoutExercise model)
         {
             WorkoutExercise workoutExercise = db.WorkoutExercises.Find(id);
             if (workoutExercise == null)
             {
                 return HttpNotFound();
             }
+
+            workoutExercise.Exercise = Repository.GetExerciseById(exerciseId);
+            workoutExercise.RepSet = Repository.GetRepSetById(repSetId);
+            workoutExercise.Workout = Repository.GetWorkoutById(workoutId);
 
             return View(workoutExercise);
         }
