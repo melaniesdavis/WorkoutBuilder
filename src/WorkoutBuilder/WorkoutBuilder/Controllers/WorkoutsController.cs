@@ -214,6 +214,17 @@ namespace WorkoutBuilder.Views.Workouts
 
             return View(workoutExercise);
         }
+
+
+        // POST: WorkoutExercise/Delete/
+        [HttpPost, ActionName("DeleteWorkoutExercise")]
+        public ActionResult DeleteExerciseConfirmed(int id, int workoutId)
+        {
+            WorkoutExercise workoutExercise = db.WorkoutExercises.Find(id);
+            db.WorkoutExercises.Remove(workoutExercise);
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = workoutId });
+        }
     }
 }
 
