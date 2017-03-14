@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DeleteWorkoutExercise</h2>
+@*<h2>DeleteWorkoutExercise</h2>*@
 
-<h3>Are you sure you want to delete this?</h3>
+<h2>Are you sure you want to delete this?</h2>
 <div>
     <h4>WorkoutExercise</h4>
     <hr />
@@ -52,8 +52,10 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
+            <div class="col-md-offset-1 col-md-11">
                 <input type="submit" value="Delete Exercise" class="btn btn-danger" />
-                @Html.ActionLink("Back to List", "Details", new { id = Model.Workout.Id })
+                <a class="col-md-offset-1 btn btn-default" href="../Details/@(Model.WorkoutId )" role="button">Cancel</a>
             </div>
-            }
         </div>
+   }
+</div>

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditWorkoutExercise</h2>
+<h2>Edit</h2>
 
 @using (Html.BeginForm())
 {
@@ -49,6 +49,8 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Edit workout" class="btn btn-warning" />
+
+                    <a class="col-md-offset-1 btn btn-default" href="../Details/@(Model.WorkoutId )" role="button">Cancel</a>
                 </div>
             </div>
         </div>
@@ -56,6 +58,3 @@
 
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Details", new { id = Model.WorkoutId })
-</div>

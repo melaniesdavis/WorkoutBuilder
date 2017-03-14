@@ -202,7 +202,6 @@
     <Content Include="Views\Workouts\Details.cshtml" />
     <Content Include="Views\Workouts\Add.cshtml" />
     <Content Include="Views\Exercises\Create.cshtml" />
-    <Content Include="Views\Exercises\Details.cshtml" />
     <Content Include="Views\Exercises\Edit.cshtml" />
     <Content Include="Views\Exercises\Delete.cshtml" />
     <Content Include="Views\RepSets\Index.cshtml" />

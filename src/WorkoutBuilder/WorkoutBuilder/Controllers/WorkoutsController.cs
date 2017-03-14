@@ -60,6 +60,7 @@ namespace WorkoutBuilder.Views.Workouts
             var workoutExercise = new ViewModels.WorkoutViewModel();
             workoutExercise.ExerciseList = Repository.GetExercises();
             workoutExercise.RepSetList = Repository.GetRepSet();
+            workoutExercise.WorkoutId = id;
             return View(workoutExercise);
         }
 
